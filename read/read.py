@@ -25,26 +25,19 @@ class SecReader():
 	# listdir help from https://stackoverflow.com/questions/3207219/how-do-i-list-all-files-of-a-directory
 	# pandas csv append help from https://stackoverflow.com/questions/17530542/how-to-add-pandas-data-to-an-existing-csv-file
 	
-	def downloadRSS( self ):
-		years = { '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018' }
-		years = { '2018' }
-                years = { '2019' }
-		months = { '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12' }
-		for year in years:
-			for month in months:
-				# https://www.sec.gov/Archives/edgar/monthly/xbrlrss-2005-04.xml
-				path = "https://www.sec.gov/Archives/edgar/monthly/"
-				filename = "xbrlrss-" + year + "-" + month + ".xml"
-				response = requests.get( path + filename )
-				if (not response):
-					continue
-				print( filename )
-				output = open( './rss/' + filename, 'wb' )
-                                output.write( response.content )
-				output.close()
-				
 
-	def readRSS(self, filename):
+	def downloadRSS( self, year, month ):				
+		# https://www.sec.gov/Archives/edgar/monthly/xbrlrss-2005-04.xml
+		path = "https://www.sec.gov/Archives/edgar/monthly/"
+		filename = "xbrlrss-" + year + "-" + month + ".xml"
+		response = requests.get( path + filename )
+		if (response):
+			print( filename )
+			output = open( './rss/' + filename, 'wb' )
+		        output.write( response.content )
+			output.close()
+
+	def downloadRSSZipFile(self, filename):
 		#xmldoc = minidom.parse(filename)
 		xmldoce = ET.parse(filename)
 		#itemlist = xmldoc.getElementsByTagName( 'item' )
@@ -69,18 +62,28 @@ class SecReader():
 			#output.write( response.read() )
 			#output.close()
 			#zfobj = zipfile.ZipFile( outputfilename )
-			try:
-                          zf = zipfile.ZipFile( io.BytesIO( response.content ) )
-			  for name in zf.namelist():
-				print( "file in zip: " + name )
-				if (not "_" in name and name.endswith( ".xml" ) ):
-					print( "extracting.." )
-					uncompressed = zf.read( name )
-                                        output = open( './xbrl/' + name, 'wb' )
-					output.write( uncompressed )
-					output.close()
-                        except:
-                          print('Error processing zip file')
+			outfilename = guid[guid.rfind("/")+1:]
+			output = open( './rsszip/' + outfilename, 'wb' )
+	                output.write( response.content )
+			output.close()
+			
+
+	def extractZipFile(self, filename):
+		#input = open( filename, 'rb' )
+		#zf = zipfile.ZipFile( io.BytesIO( input.read ) )
+		zf = zipfile.ZipFile( filename )		
+		for name in zf.namelist():
+			print( "file in zip: " + name )
+			outfilename = ""
+			if (not "_" in name and name.endswith( ".xml" ) ):
+				outfilename = './xbrl/' + name
+			else:
+				outfilename = './other/' + name
+			uncompressed = zf.read( name )
+                        output = open( outfilename, 'wb' )
+			output.write( uncompressed )
+			output.close()
+
 
 	# xbrl context help from https://stackoverflow.com/questions/14513938/xbrl-us-gaap-contextref-standard
 
@@ -178,10 +181,9 @@ class SecReader():
 	
 		# csv help from https://stackoverflow.com/questions/14037540/writing-a-python-list-of-lists-to-a-csv-file
 
-                csvname2 = './data2/' + ticker + '.csv'
-       #         with open(csvname2, "w", encoding="utf-8") as f:
-                with open(csvname2, "w") as f:
-			if not os.path.isfile(csvname2):
+                csvname = './data/' + ticker + '.csv'
+                with open(csvname, "a") as f:
+			if not os.path.isfile(csvname):
 				writer.writerow(['key', 'ticker', 'startdate', 'enddate', 'value'])
 			writer = csv.writer(f, delimiter=",", lineterminator="\n")
 			writer.writerows(dataList)
