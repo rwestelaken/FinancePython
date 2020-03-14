@@ -15,12 +15,12 @@ CREATE TABLE Measures(
 	StartDate DATE NULL, 
 	EndDate DATE NOT NULL, 
 	EndTime TIMESTAMPTZ NOT NULL, 
-	Measuare TEXT NOT NULL,
+	Measure TEXT NOT NULL,
 	Amount REAL NOT NULL);
 
-INSERT INTO Measures(Ticker, StartDate, EndDate, EndTime, Measuare, Amount) 
+INSERT INTO Measures(Ticker, StartDate, EndDate, EndTime, Measure, Amount) 
 	VALUES ('AAA', NULL, '2020-10-01', '2020-01-01 22:10:25-04', 'Price', 123.456);
-INSERT INTO Measures(Ticker, StartDate, EndDate, EndTime, Measuare, Amount)  
+INSERT INTO Measures(Ticker, StartDate, EndDate, EndTime, Measure, Amount)  
 	VALUES ('AAA', '2020-01-01', '2020-01-31', '2020-01-31 11:59:59-04', 'Income', 123.456 );
 
 SELECT * from Company;
