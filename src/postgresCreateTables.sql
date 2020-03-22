@@ -1,27 +1,39 @@
 
-DROP TABLE Company;
-DROP TABLE Measures;
+DROP TABLE company;
+DROP TABLE measure;
+DROP TABLE equity_price;
 
-CREATE TABLE Company( 
-	Ticker TEXT NOT NULL, 
-	Name TEXT NOT NULL,   
-	Industry TEXT NOT NULL);
+CREATE TABLE company( 
+	ticker TEXT NOT NULL, 
+	name TEXT NOT NULL,   
+	industry TEXT NOT NULL);
 
-INSERT INTO Company(Ticker, Name, Industry) 
-	VALUES ('AAA','AAA','Finance');
+CREATE TABLE measure( 
+	ticker TEXT NOT NULL, 
+	start_date DATE NULL, 
+	end_date DATE NOT NULL, 
+	end_time TIMESTAMPTZ NOT NULL, 
+	measure TEXT NOT NULL,
+	amount REAL NOT NULL);
 
-CREATE TABLE Measures( 
-	Ticker TEXT NOT NULL, 
-	StartDate DATE NULL, 
-	EndDate DATE NOT NULL, 
-	EndTime TIMESTAMPTZ NOT NULL, 
-	Measure TEXT NOT NULL,
-	Amount REAL NOT NULL);
+CREATE TABLE equity_price( 
+	source TEXT NOT NULL, 
+	ticker TEXT NOT NULL,
+	end_date DATE NOT NULL, 
+	end_time TIMESTAMPTZ NOT NULL, 
+	open REAL NOT NULL,
+	high REAL NOT NULL,
+	low REAL NOT NULL,
+	close REAL NOT NULL,
+	volume REAL NOT NULL,
+	dividend REAL NOT NULL,
+	split REAL NOT NULL,
+	adj_open REAL NOT NULL,
+	adj_high REAL NOT NULL,
+	adj_low REAL NOT NULL,
+	adj_close REAL NOT NULL,
+	adj_volume REAL NOT NULL);
 
-INSERT INTO Measures(Ticker, StartDate, EndDate, EndTime, Measure, Amount) 
-	VALUES ('AAA', NULL, '2020-10-01', '2020-01-01 22:10:25-04', 'Price', 123.456);
-INSERT INTO Measures(Ticker, StartDate, EndDate, EndTime, Measure, Amount)  
-	VALUES ('AAA', '2020-01-01', '2020-01-31', '2020-01-31 11:59:59-04', 'Income', 123.456 );
-
-SELECT * from Company;
-SELECT * from Measures;
+SELECT * from company;
+SELECT * from measure;
+SELECT * from equity_price

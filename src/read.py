@@ -1,8 +1,8 @@
 from xml.dom import minidom
 import xml.etree.ElementTree as ET
-import numpy as np
+#import numpy as np
 import csv
-import pandas as pd
+#import pandas as pd
 import datetime
 import time
 #import urllib.request
@@ -26,18 +26,18 @@ class SecReader():
 	# pandas csv append help from https://stackoverflow.com/questions/17530542/how-to-add-pandas-data-to-an-existing-csv-file
 	
 
-	def downloadRSS( self, year, month ):				
+	def downloadRSS( self, rsspath, year, month):				
 		# https://www.sec.gov/Archives/edgar/monthly/xbrlrss-2005-04.xml
 		path = "https://www.sec.gov/Archives/edgar/monthly/"
-		filename = "xbrlrss-" + year + "-" + month + ".xml"
+		filename = f"xbrlrss-{year}-{month}.xml"
 		response = requests.get( path + filename )
 		if (response):
 			print( filename )
-			output = open( './rss/' + filename, 'wb' )
-		        output.write( response.content )
+			output = open( rsspath + filename, 'wb' )
+			output.write( response.content )
 			output.close()
 
-	def downloadRSSZipFile(self, filename):
+	def extractRSS(self, filename, rsszippath):
 		#xmldoc = minidom.parse(filename)
 		xmldoce = ET.parse(filename)
 		#itemlist = xmldoc.getElementsByTagName( 'item' )
@@ -63,24 +63,55 @@ class SecReader():
 			#output.close()
 			#zfobj = zipfile.ZipFile( outputfilename )
 			outfilename = guid[guid.rfind("/")+1:]
-			output = open( './rsszip/' + outfilename, 'wb' )
-	                output.write( response.content )
+			output = open( rsszippath + outfilename, 'wb' )
+			output.write( response.content )
+			output.close()
+
+	def downloadRSSZipFile(self, filename, rsszippath):
+		#xmldoc = minidom.parse(filename)
+		xmldoce = ET.parse(filename)
+		#itemlist = xmldoc.getElementsByTagName( 'item' )
+		xmlroot = xmldoce.getroot()
+		#print( len( itemlist ) )
+		#print( len( itemliste ) )
+		#print( itemlist[0].attributes['title'].value )
+		#print( itemlist[0].getElementsByTagName('title').data )
+		#for s in itemlist:
+		for s in xmlroot.iter('item'):
+			#print( s.tostring() )
+			#print( s.getELementsByTagName('title')[0].firstChild.nodeValue )
+			print( s.find('title').text )
+			print( s.find('description').text )
+			if ( s.find('guid') is None ):
+				continue
+			guid = s.find('guid').text
+			print( "guid:" + guid )		
+			#response = requests.get( guid, proxies=proxies )
+			response = requests.get( guid )
+			#output = open( 'tempzip','wb' )
+			#output.write( response.read() )
+			#output.close()
+			#zfobj = zipfile.ZipFile( outputfilename )
+			outfilename = guid[guid.rfind("/")+1:]
+			output = open( rsszippath + outfilename, 'wb' )
+			output.write( response.content )
 			output.close()
 			
 
-	def extractZipFile(self, filename):
+	def extractZipFile(self, filename, xbrlpath, otherpath):
 		#input = open( filename, 'rb' )
 		#zf = zipfile.ZipFile( io.BytesIO( input.read ) )
-		zf = zipfile.ZipFile( filename )		
+		zf = zipfile.ZipFile( filename )	
 		for name in zf.namelist():
 			print( "file in zip: " + name )
 			outfilename = ""
 			if (not "_" in name and name.endswith( ".xml" ) ):
-				outfilename = './xbrl/' + name
+				outfilename = xbrlpath + name
 			else:
-				outfilename = './other/' + name
+				outfilename = otherpath + name
 			uncompressed = zf.read( name )
-                        output = open( outfilename, 'wb' )
+			print( outfilename )
+			output = open( outfilename, 'wb' )
 			output.write( uncompressed )
 			output.close()
 
@@ -94,7 +125,7 @@ class SecReader():
 		except ValueError:
 			return False
 
-	def readXBRL( self, filename, ticker):
+	def readXBRL( self, filename, ticker, datapath):
 		ns_xbrli = "{http://www.xbrl.org/2003/instance}"
 		ns_xbrldi = "{http://xbrl.org/2006/xbrldi}"
 		ns_usgaap = "{http://fasb.org/us-gaap/yyyy-mm-dd}"
@@ -172,8 +203,8 @@ class SecReader():
 		print( "Data time taken: " + str( t2-t1 ) + " seconds" )
 		
 		t1 = time.time()
-		#csvname = ".\\data\\" + ticker+ ".csv"
-		#df.to_csv( ".\\data\\" + ticker+ ".csv", sep=',', encoding='utf-8' )
+		#csvname = datapath + ticker+ ".csv"
+		#df.to_csv( datapath + ticker+ ".csv", sep=',', encoding='utf-8' )
 		#if not os.path.isfile(csvname):
 		#	df.to_csv(csvname, mode='a', sep=',')
 		#else:
@@ -181,8 +212,8 @@ class SecReader():
 	
 		# csv help from https://stackoverflow.com/questions/14037540/writing-a-python-list-of-lists-to-a-csv-file
 
-                csvname = './data/' + ticker + '.csv'
-                with open(csvname, "a") as f:
+		csvname = datapath + ticker + '.csv'
+		with open(csvname, "a") as f:
 			if not os.path.isfile(csvname):
 				writer.writerow(['key', 'ticker', 'startdate', 'enddate', 'value'])
 			writer = csv.writer(f, delimiter=",", lineterminator="\n")
@@ -201,7 +232,7 @@ class SecReader():
 		filename = ticker + ".json"
 		pathandfilename = ".\\prices\\" + filename
 		pathandfilename = './prices/' + filename
-                response = requests.get( url )
+		response = requests.get( url )
 		#print( response.content )
 		#datetime.datetime.utcfromtimestamp(posix_time).strftime('%Y-%m-%dT%H:%M:%SZ')
 		if (response):
@@ -212,13 +243,13 @@ class SecReader():
 
 	# quandl help from https://www.quora.com/Using-Python-whats-the-best-way-to-get-stock-data
 
-	def downloadQuandlFinance( self, ticker ):
+	def downloadQuandlFinance( self, ticker, quandlpath ):
 		import quandl
 		apikey = "7CXBrupYp7tL53dHGUar"
 		try:
 			df = quandl.get("WIKI/" + ticker, start_date="2016-01-01", end_date="2018-01-01", api_key=apikey)
-			csvname = './quandl/' + ticker + '.csv'
-                        df.to_csv( csvname, sep=',', encoding='utf-8' )
+			csvname = quandlpath + ticker + '.csv'
+			df.to_csv( csvname, sep=',', encoding='utf-8' )
 			print( csvname )
 		except:
 			print( ticker + " is an invalid code" )
