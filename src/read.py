@@ -226,12 +226,11 @@ class SecReader():
 
 	# yahoo finance help from https://stackoverflow.com/questions/44030983/yahoo-finance-url-not-working
 
-	def downloadYahooFinance( self, ticker ):
-		url = "https://query1.finance.yahoo.com/v7/finance/download/" + ticker + "?period1=1529705406&period2=1532297406&interval=1d&events=history&crumb=IhP5WUwkm7I"
-		url = "https://query1.finance.yahoo.com/v8/finance/chart/AA?symbol=AA&period1=0&period2=9999999999&interval=1mo&events=div%2Csplit"
-		filename = ticker + ".json"
-		pathandfilename = ".\\prices\\" + filename
-		pathandfilename = './prices/' + filename
+	def downloadYahooFinance( self, ticker, yahoopath ):
+		url = "https://query1.finance.yahoo.com/v7/finance/download/" + ticker + "?period1=0&period2=9999999999&interval=1d&events=history&crumb=IhP5WUwkm7I"
+		#url = "https://query1.finance.yahoo.com/v8/finance/chart/AA?symbol=AA&period1=0&period2=9999999999&interval=1mo&events=div%2Csplit"
+		filename = ticker + ".csv"
+		pathandfilename = yahoopath + filename
 		response = requests.get( url )
 		#print( response.content )
 		#datetime.datetime.utcfromtimestamp(posix_time).strftime('%Y-%m-%dT%H:%M:%SZ')

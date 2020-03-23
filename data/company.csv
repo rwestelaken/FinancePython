@@ -1,0 +1,12 @@
+ticker,name,sector,industry
+BNS.TO,Bank of Nova Scotia,Finance,Banks
+BMO.TO,Bank of Montreal,Finance,Banks
+CM.TO,Canadian Imperial Bank of Canada,Finance,Banks
+RY.TO,Royal Bank of Canada,Finance,Banks
+TD.TO,Toronto Dominion Bank,Finance,Banks
+NA.TO,National Bank,Finance,Banks
+MSFT,Microsoft,Information Technology,Software
+AMZN,Amazon,Information Technology,Software
+GOOG,Google,Information Technology,Software
+INTC,Intel,Information Technology,Semiconductors
+CSCO,Cisco,Information Technology,Semiconductors
