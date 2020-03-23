@@ -1,7 +1,9 @@
 
 DROP TABLE company;
 DROP TABLE measure;
-DROP TABLE equity_price;
+DROP TABLE price;
+DROP TABLE dividend;
+DROP TABLE split;
 
 CREATE TABLE company( 
 	ticker TEXT NOT NULL, 
@@ -45,4 +47,6 @@ CREATE TABLE split(
 
 SELECT * from company;
 SELECT * from measure;
-SELECT * from equity_price
+SELECT * from price;
+SELECT * from dividend;
+SELECT * from split;
