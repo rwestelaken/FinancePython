@@ -8,7 +8,7 @@ DROP TABLE split;
 CREATE TABLE company( 
 	ticker TEXT NOT NULL, 
 	name TEXT NOT NULL,   
-	industry TEXT NOT NULL)
+	industry TEXT NOT NULL);
 
 CREATE TABLE measure( 
 	source TEXT NOT NULL,
@@ -36,14 +36,14 @@ CREATE TABLE dividend(
 	ticker TEXT NOT NULL,
 	end_date DATE NOT NULL, 
 	end_time TIMESTAMPTZ NOT NULL, 
-	amount REAL NOT NULL,
+	amount REAL NOT NULL);
 
 CREATE TABLE split(
 	source TEXT NOT NULL, 
 	ticker TEXT NOT NULL,
 	end_date DATE NOT NULL, 
 	end_time TIMESTAMPTZ NOT NULL, 
-	amount REAL NOT NULL)
+	amount REAL NOT NULL);
 
 SELECT * from company;
 SELECT * from measure;
