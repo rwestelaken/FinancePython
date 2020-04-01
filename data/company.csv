@@ -1,12 +1,32 @@
-ticker,name,sector,industry
-BNS.TO,Bank of Nova Scotia,Finance,Banks
-BMO.TO,Bank of Montreal,Finance,Banks
-CM.TO,Canadian Imperial Bank of Canada,Finance,Banks
-RY.TO,Royal Bank of Canada,Finance,Banks
-TD.TO,Toronto Dominion Bank,Finance,Banks
-NA.TO,National Bank,Finance,Banks
-MSFT,Microsoft,Information Technology,Software
-AMZN,Amazon,Information Technology,Software
-GOOG,Google,Information Technology,Software
-INTC,Intel,Information Technology,Semiconductors
-CSCO,Cisco,Information Technology,Semiconductors
+ticker,name,sector,industry,city,country,public
+BNS.TO,Bank of Nova Scotia,Finance,Banks,Toronto,Canada,true
+BMO.TO,Bank of Montreal,Finance,Banks,Toronto,Canada,true
+CM.TO,Canadian Imperial Bank of Canada,Finance,Banks,Toronto,Canada,true
+RY.TO,Royal Bank of Canada,Finance,Banks,Toronto,Canada,true
+TD.TO,Toronto Dominion Bank,Finance,Banks,Toronto,Canada,true
+NA.TO,National Bank,Finance,Banks,Toronto,Canada,true
+MSFT,Microsoft,Information Technology,Software,Seattle,United States,true
+AMZN,Amazon,Information Technology,Software,Seattle,United States,true
+GOOG,Google,Information Technology,Software,San Jose,United States,true
+INTC,Intel,Information Technology,Semiconductors,San Jose,United States,true
+CSCO,Cisco,Information Technology,Semiconductors,San Jose,United States,true
+maersk,A.P. Moller-Maersk Group,Transportation,Marine,Copenhagen,Denmark,false
+msc,Mediterranean Shipping Company S.A.,Transportation,Marine,Geneva,Switzerland,false
+cosco,China COSCO,Transportation,Marine,Beijing,People's Republic of China,false
+cma,CMA CGM Group,Transportation,Marine,Marseille,France,false
+hlag.de,Hapag-Lloyd,Transportation,Marine,Hamburg,Germany,true
+one,ONE (Ocean Network Express),Transportation,Marine,Singapore,Singapore,false
+2603.TW,Evergreen Marine Corporation,Transportation,Marine,Taoyuan City,Taiwan,true
+2609.TW,Yang Ming Marine Transport Corporation,Transportation,Marine,Keelung City,Taiwan,true
+pil,PIL (Pacific International Lines),Transportation,Marine,Singapore,Singapore,false
+011200.KS,Hyundai Merchant Transportation,Marine,Transportation,Marine,Seoul,South Korea,true
+zim,ZIM Integrated Shipping Services,Transportation,Marine,Haifa,Israel,false
+2615.TW,Wan Hai Lines,Transportation,Marine,Taipei,Taiwan,true
+fro,Frontline,Transportation,Marine,Hamilton,Bermuda,true
+nat,Nordic American Tankers Limited,Transportation,Marine,Hamilton,Bermuda,true
+sfl,SFL Corporation Ltd,Transportation,Marine,Hamilton,Bermuda,true
+dsc,Diana Shipping Inc.,Transportation,Marine,Athens,Greece,true
+tk,Teekay Corporation,Transportation,Marine,Hamilton,Bermuda,true
+tnp,Tsakos Energy Navigation Ltd,Transportation,Marine,Athens,Greece,true
+osg,Overseas Shipholding Group Inc,Transportation,Marine,Tampa,United States,true
+
