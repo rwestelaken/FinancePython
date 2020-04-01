@@ -6,6 +6,7 @@ def test():
 	t1 = time.time()
 	rootpath = "/home/westy/Data/finance/"
 	reader = SecReader()
+	loader = SecLoader()
 	yahoopath = rootpath + f"yahoo/"
 	if not os.path.exists(yahoopath):
 		os.makedirs(yahoopath)
@@ -19,8 +20,12 @@ def test():
 	for key in index:
 		#print( filename )
 		#key = filename.split(".")[0]
-		reader.downloadYahooFinance(key, yahoopath)
+		#reader.downloadYahooFinance(key, yahoopath)
 	
+	for filename in os.listdir( yahoopath ):
+		print( filename )
+		loader.loadPrice( yahoopath + filename )	
+
 	t2 = time.time()
 	print( "Total time taken: " + str( t2-t1 ) + " seconds" )
 

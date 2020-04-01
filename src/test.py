@@ -61,7 +61,8 @@ def test():
 	
 	for filename in os.listdir( datapath ):
 		print( filename )
-		loader.loadToPortgres( datapath + filename )	
+		loader.loadMeasure( datapath + filename )	
+
 
 	t2 = time.time()
 	print( "Total time taken: " + str( t2-t1 ) + " seconds" )
