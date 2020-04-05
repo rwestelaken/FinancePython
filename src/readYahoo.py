@@ -1,5 +1,6 @@
 import time
 from read import SecReader
+from load import SecLoader
 import os
 
 def test():
@@ -16,15 +17,24 @@ def test():
 	utilities = ["FTS.TO","ATCO-X.TO","CU.TO"]
 	rail = ["CNR.TO","CP.TO","CTC-A.TO"]
 	index = ["SPY","QQQ","XIU.TO"]
+	everything = banks + tech + consumer + utilities + rail + index
 	#for filename in os.listdir( datapath ):
-	for key in index:
-		#print( filename )
+	for key in everything:
+		print( key )
 		#key = filename.split(".")[0]
 		#reader.downloadYahooFinance(key, yahoopath)
 	
 	for filename in os.listdir( yahoopath ):
 		print( filename )
-		loader.loadPrice( yahoopath + filename )	
+		#loader.loadPrice( yahoopath + filename )
+
+	loader.loadPrice( yahoopath + "FTS.TO.csv" )
+
+	intc = loader.getPrices( 'yahoo', 'INTC' )
+	print(intc)
+
+	fts = loader.getPrices( 'yahoo', 'FTS.TO' )
+	print(fts)
 
 	t2 = time.time()
 	print( "Total time taken: " + str( t2-t1 ) + " seconds" )
