@@ -57,6 +57,11 @@ class SecLoader():
 		Session = sessionmaker(bind=self.engine)
 		self.session = Session()
 
+	def deleteCompanies( self ):
+		count = self.session.query(Company).delete()
+		self.session.commit()
+		print( f"{count} companies deleted" )
+
 	def loadCompany( self, filename ):
 		t1 = time.time()
 		with open( filename ) as f:
@@ -71,7 +76,7 @@ class SecLoader():
 				c.city = row[4]
 				c.country = row[5]
 				c.exchange = row[6]
-				print( c )
+				#print( c )
 				self.session.add(c)
 		t2 = time.time()
 		print( "reading time taken: " + str( t2-t1 ) + " seconds" )
@@ -141,8 +146,8 @@ class SecLoader():
 
 
 	def getCompanies( self, exchange ):
-		query = self.session.query( Company ).filter( Company.exchange==exchange )
-		data_list = pd.read_sql( query.statement, self.engine ).set_index( 'ticker' )
-		return data_list
+		#query = self.session.query( Company ).filter( Company.exchange==exchange )
+		#data_list = pd.read_sql( query.statement, self.engine ).set_index( 'ticker' )
+		return self.session.query( Company ).filter( Company.exchange==exchange ).all()	
 
 
