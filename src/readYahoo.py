@@ -19,22 +19,26 @@ def test():
 	index = ["SPY","QQQ","XIU.TO"]
 	everything = banks + tech + consumer + utilities + rail + index
 	#for filename in os.listdir( datapath ):
-	for key in everything:
-		print( key )
-		#key = filename.split(".")[0]
+
+	#loader.loadCompany( "../data/company.csv" )
+
+	companies = loader.getCompanies( "true" )
+	print(companies)
+	
+	#for key in everything:
+		#print( key )
 		#reader.downloadYahooFinance(key, yahoopath)
 	
-	for filename in os.listdir( yahoopath ):
-		print( filename )
+	#for filename in os.listdir( yahoopath ):
+		#print( filename )
 		#loader.loadPrice( yahoopath + filename )
 
-	loader.loadPrice( yahoopath + "FTS.TO.csv" )
 
-	intc = loader.getPrices( 'yahoo', 'INTC' )
-	print(intc)
+	#intc = loader.getPrices( 'yahoo', 'INTC' )
+	#print(intc)
 
-	fts = loader.getPrices( 'yahoo', 'FTS.TO' )
-	print(fts)
+	#fts = loader.getPrices( 'yahoo', 'FTS.TO' )
+	#print(fts)
 
 	t2 = time.time()
 	print( "Total time taken: " + str( t2-t1 ) + " seconds" )

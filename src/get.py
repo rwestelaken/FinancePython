@@ -13,25 +13,22 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 
 Base = declarative_base()
 
-class Company(Base): 
+class company(Base): 
 	__tablename__ = 'company'
-	#id = Column( Integer, primary_key=True)
-	ticker = Column( String(50), primary_key=True )
+	id = Column( Integer, primary_key=True)
+	ticker = Column( String(50) )
 	name = Column( String(50) )
 	sector = Column( String(50) )
 	industry = Column( String(50) ) 
-	city = Column( String(50) )
-	country = Column( String(50) )
-	exchange = Column( String(50) )
 
 class Measure(Base):
 	__tablename__ = 'measure'
-	#id = Column( Integer, primary_key=True)
-	ticker = Column( String(50), primary_key=True )
+	id = Column( Integer, primary_key=True)
+	ticker = Column( String(50) )
 	start_date = Column( DateTime )
-	end_date = Column( DateTime, primary_key=True )
+	end_date = Column( DateTime )
 	end_time = Column( DateTime(timezone=True) )
-	measure = Column( String(500), primary_key=True )
+	measure = Column( String(500) )
 	amount = Column( Float )
 
 class Price(Base):
@@ -57,29 +54,6 @@ class SecLoader():
 		Session = sessionmaker(bind=self.engine)
 		self.session = Session()
 
-	def loadCompany( self, filename ):
-		t1 = time.time()
-		with open( filename ) as f:
-			reader = csv.reader(f)
-			for row in reader:
-				c = Company()
-				c.Source = "SEC"
-				c.ticker = row[0]
-				c.name = row[1]
-				c.sector = row[2]
-				c.industry = row[3]
-				c.city = row[4]
-				c.country = row[5]
-				c.exchange = row[6]
-				print( c )
-				self.session.add(c)
-		t2 = time.time()
-		print( "reading time taken: " + str( t2-t1 ) + " seconds" )
-		t1 = time.time()
-		self.session.commit()
-		t2 = time.time()
-		print( "Loading time taken: " + str( t2-t1 ) + " seconds" )
-
 	def loadMeasure( self, filename ):
 		t1 = time.time()
 		measures = []
@@ -88,12 +62,12 @@ class SecLoader():
 			for row in reader:
 				m = Measure()
 				m.Source = "SEC"
-				m.ticker = row[1]
-				m.start_date = row[2]
-				m.end_date = row[3]
-				m.end_time = row[3]
-				m.measure = row[0]
-				m.amount = row[4]
+				m.Ticker = row[1]
+				m.StartDate = row[2]
+				m.EndDate = row[3]
+				m.EndTime = row[3]
+				m.Measure = row[0]
+				m.Amount = row[4]
 				self.session.add(m)
 		t2 = time.time()
 		print( "reading time taken: " + str( t2-t1 ) + " seconds" )
@@ -106,6 +80,7 @@ class SecLoader():
 		#Date,Open,High,Low,Close,Adj Close,Volume
 		t1 = time.time()
 		ticker = filename[filename.rfind("/")+1:]
+		#ticker = ticker.split(".")[0]
 		ticker = ticker[:ticker.rfind(".")]
 		print( ticker )
 		with open( filename ) as f:
@@ -140,9 +115,5 @@ class SecLoader():
 		return data_list
 
 
-	def getCompanies( self, exchange ):
-		query = self.session.query( Company ).filter( Company.exchange==exchange )
-		data_list = pd.read_sql( query.statement, self.engine ).set_index( 'ticker' )
-		return data_list
 
 

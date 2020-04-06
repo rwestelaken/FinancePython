@@ -8,7 +8,11 @@ DROP TABLE split;
 CREATE TABLE company( 
 	ticker TEXT NOT NULL, 
 	name TEXT NOT NULL,   
-	industry TEXT NOT NULL);
+	sector TEXT NOT NULL,
+	industry TEXT NOT NULL,
+	city TEXT NOT NULL,
+	country TEXT NOT NULL,
+	exchange TEXT NOT NULL);
 
 CREATE TABLE measure( 
 	source TEXT NOT NULL,

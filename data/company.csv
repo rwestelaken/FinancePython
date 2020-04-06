@@ -1,10 +1,4 @@
-ticker,name,sector,industry,city,country,public
-BNS.TO,Bank of Nova Scotia,Finance,Banks,Toronto,Canada,true
-BMO.TO,Bank of Montreal,Finance,Banks,Toronto,Canada,true
-CM.TO,Canadian Imperial Bank of Canada,Finance,Banks,Toronto,Canada,true
-RY.TO,Royal Bank of Canada,Finance,Banks,Toronto,Canada,true
-TD.TO,Toronto Dominion Bank,Finance,Banks,Toronto,Canada,true
-NA.TO,National Bank,Finance,Banks,Toronto,Canada,true
+ticker,name,sector,industry,city,country,exchange
 MSFT,Microsoft,Information Technology,Software,Seattle,United States,true
 AMZN,Amazon,Information Technology,Software,Seattle,United States,true
 GOOG,Google,Information Technology,Software,San Jose,United States,true
@@ -19,7 +13,7 @@ one,ONE (Ocean Network Express),Transportation,Marine,Singapore,Singapore,false
 2603.TW,Evergreen Marine Corporation,Transportation,Marine,Taoyuan City,Taiwan,true
 2609.TW,Yang Ming Marine Transport Corporation,Transportation,Marine,Keelung City,Taiwan,true
 pil,PIL (Pacific International Lines),Transportation,Marine,Singapore,Singapore,false
-011200.KS,Hyundai Merchant Transportation,Marine,Transportation,Marine,Seoul,South Korea,true
+011200.KS,Hyundai Merchant Transportation,Transportation,Marine,Seoul,South Korea,true
 zim,ZIM Integrated Shipping Services,Transportation,Marine,Haifa,Israel,false
 2615.TW,Wan Hai Lines,Transportation,Marine,Taipei,Taiwan,true
 fro,Frontline,Transportation,Marine,Hamilton,Bermuda,true
@@ -29,4 +23,63 @@ dsc,Diana Shipping Inc.,Transportation,Marine,Athens,Greece,true
 tk,Teekay Corporation,Transportation,Marine,Hamilton,Bermuda,true
 tnp,Tsakos Energy Navigation Ltd,Transportation,Marine,Athens,Greece,true
 osg,Overseas Shipholding Group Inc,Transportation,Marine,Tampa,United States,true
-
+AEM.TO,Agnico Eagle Mines Limited,Basic Materials,Basic Materials,Toronto,Canada,true
+ATD-B.TO,Alimentation Couche-Tard Inc.,Consumer Defensive,Consumer Defensive,Toronto,Canada,true
+BMO.TO,Bank of Montreal,Financial Services,Banks,Toronto,Canada,true
+BNS.TO,Bank of Nova Scotia,Financial Services,Banks,Toronto,Canada,true
+ABX.TO,Barrick Gold Corporation,Basic Materials,Basic Materials,Toronto,Canada,true
+BHC.TO,Bausch Health Companies Inc.,Healthcare,Healthcare,Toronto,Canada,true
+BCE.TO,BCE Inc.,Communication Services,Communication Services,Toronto,Canada,true
+BB.TO,BlackBerry Limited,Technology,Technology,Toronto,Canada,true
+BBD-B.TO,Bombardier Inc.,Industrials,Industrials,Toronto,Canada,true
+BAM.A.TO,Brookfield Asset Management Inc.,Financial Services,Financial Services,Toronto,Canada,true
+BIP-UN.TO,Brookfield Infrastructure Partners L.P.,Utilities,Utilities,Toronto,Canada,true
+CCO.TO,Cameco Corporation,Basic Materials,Basic Materials,Toronto,Canada,true
+CM.TO,Canadian Imperial Bank of Commerce,Financial Services,Banks,Toronto,Canada,true
+CNR.TO,Canadian National Railway Company,Industrials,Industrials,Toronto,Canada,true
+CNQ.TO,Canadian Natural Resources Limited,Energy,Energy,Toronto,Canada,true
+CP.TO,Canadian Pacific Railway Limited,Industrials,Industrials,Toronto,Canada,true
+CTC-A.TO,Canadian Tire Corporation Limited,Consumer Cyclical,Consumer Cyclical,Toronto,Canada,true
+WEED.TO,Canopy Growth Corporation,Healthcare,Healthcare,Toronto,Canada,true
+CCL-B.TO,CCL Industries Inc.,Consumer Cyclical,Consumer Cyclical,Toronto,Canada,true
+CVE.TO,Cenovus Energy Inc.,Energy,Energy,Toronto,Canada,true
+GIB-A.TO,CGI Inc.,Technology,Technology,Toronto,Canada,true
+CSU.TO,Constellation Software Inc.,Technology,Technology,Toronto,Canada,true
+DOL.TO,Dollarama Inc.,Consumer Defensive,Consumer Defensive,Toronto,Canada,true
+EMA.TO,Emera Incorporated,Utilities,Utilities,Toronto,Canada,true
+ENB.TO,Enbridge Inc.,Energy,Energy,Toronto,Canada,true
+ECA.TO,Encana Corporation,Energy,Energy,Toronto,Canada,true
+FM.TO,First Quantum Minerals Ltd.,Basic Materials,Basic Materials,Toronto,Canada,true
+FTS.TO,Fortis Inc.,Utilities,Utilities,Toronto,Canada,true
+FNV.TO,Franco-Nevada Corporation,Basic Materials,Basic Materials,Toronto,Canada,true
+WN.TO,George Weston Limited,Consumer Defensive,Consumer Defensive,Toronto,Canada,true
+GIL.TO,Gildan Activewear Inc.,Consumer Cyclical,Consumer Cyclical,Toronto,Canada,true
+IMO.TO,Imperial Oil Limited,Energy,Energy,Toronto,Canada,true
+IPL.TO,Inter Pipeline Ltd.,Energy,Energy,Toronto,Canada,true
+K.TO,Kinross Gold Corporation,Basic Materials,Basic Materials,Toronto,Canada,true
+KL.TO,Kirkland Lake Gold Ltd.,Basic Materials,Basic Materials,Toronto,Canada,true
+L.TO,Loblaw Companies Limited,Consumer Defensive,Consumer Defensive,Toronto,Canada,true
+MG.TO,Magna International Inc.,Consumer Cyclical,Consumer Cyclical,Toronto,Canada,true
+MFC.TO,Manulife Financial Corporation,Financial Services,Financial Services,Toronto,Canada,true
+MRU.TO,Metro Inc.,Consumer Defensive,Consumer Defensive,Toronto,Canada,true
+NA.TO,National Bank of Canada,Financial Services,Banks,Toronto,Canada,true
+NTR.TO,Nutrien Ltd.,Basic Materials,Basic Materials,Toronto,Canada,true
+OTEX.TO,Open Text Corporation,Technology,Technology,Toronto,Canada,true
+PPL.TO,Pembina Pipeline Corporation,Energy,Energy,Toronto,Canada,true
+POW.TO,Power Corporation of Canada,Financial Services,Financial Services,Toronto,Canada,true
+QSR.TO,Restaurant Brands International Inc.,Consumer Cyclical,Consumer Cyclical,Toronto,Canada,true
+RCI-B.TO,Rogers Communications Inc.,Communication Services,Communication Services,Toronto,Canada,true
+RY.TO,Royal Bank of Canada,Financial Services,Banks,Toronto,Canada,true
+SAP.TO,Saputo Inc.,Dairy Products,Dairy Products,Toronto,Canada,true
+SJR-B.TO,Shaw Communications Inc.,Communication Services,Communication Services,Toronto,Canada,true
+SHOP.TO,Shopify Inc.,Technology,Technology,Toronto,Canada,true
+SNC.TO,SNC-Lavalin Group Inc.,Industrials,Industrials,Toronto,Canada,true
+SLF.TO,Sun Life Financial Inc.,Financial Services,Insurance,Toronto,Canada,true
+SU.TO,Suncor Energy Inc.,Energy,Energy,Toronto,Canada,true
+TRP.TO,TC Energy Corporation,Energy,Energy,Toronto,Canada,true
+TECK-B.TO,Teck Resources Limited,Basic Materials,Basic Materials,Toronto,Canada,true
+T.TO,Telus Corporation,Communication Services,Communication Services,Toronto,Canada,true
+TRI.TO,Thomson Reuters Corporation,Financial Services,Financial Services,Toronto,Canada,true
+TD.TO,Toronto-Dominion Bank,Financial Services,Banks,Toronto,Canada,true
+WCN.TO,Waste Connections Inc.,Industrials,Industrials,Toronto,Canada,true
+WPM.TO,Wheaton Precious Metals Corp.,Basic Materials,Basic Materials,Toronto,Canada,true
