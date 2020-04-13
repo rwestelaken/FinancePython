@@ -6,44 +6,10 @@ import datetime
 import time
 
 import sqlalchemy as sql
-
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, DateTime, Float, create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
+from sqlalchemy import create_engine
 
-Base = declarative_base()
-
-class company(Base): 
-	__tablename__ = 'company'
-	id = Column( Integer, primary_key=True)
-	ticker = Column( String(50) )
-	name = Column( String(50) )
-	sector = Column( String(50) )
-	industry = Column( String(50) ) 
-
-class Measure(Base):
-	__tablename__ = 'measure'
-	id = Column( Integer, primary_key=True)
-	ticker = Column( String(50) )
-	start_date = Column( DateTime )
-	end_date = Column( DateTime )
-	end_time = Column( DateTime(timezone=True) )
-	measure = Column( String(500) )
-	amount = Column( Float )
-
-class Price(Base):
-	__tablename__ = 'price'
-	#id = Column( Integer, primary_key=True)
-	source = Column( String(50), primary_key=True )
-	ticker = Column( String(50), primary_key=True )
-	end_date = Column( DateTime, primary_key=True )
-	end_time = Column( DateTime(timezone=True) )
-	open = Column( Float )
-	high = Column( Float )
-	low = Column( Float )
-	close = Column( Float )
-	volume = Column( Float )
-	adj_close = Column( Float )
+from domain import Company, Measure, Price
 
 class SecLoader():
 	# postgres help from https://stackoverflow.com/questions/45608131/insert-from-csv-file-to-postgresql-table-with-integer-values-type
