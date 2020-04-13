@@ -6,6 +6,7 @@ import sqlalchemy as sql
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy import create_engine
+from sqlalchemy import desc
 
 Base = declarative_base()
 
@@ -60,12 +61,15 @@ def get_prices_by_ticker(ticker=None):
 	"""
 	if ticker is None or len(ticker) == 0:
 		abort(404)
-	engine = create_engine("postgresql://postgres:PostGres2020!@localhost/finance")
-	Base.metadata.create_all(engine)
-	session = sessionmaker(bind=engine)	
-	list = session.query(Price).filter(Price.ticker == ticker).order_by(Price.end_date).all()
+	session = get_session()
+	list = session.query(Price) \
+		.filter(Price.ticker == ticker) \
+		.filter(Price.end_date >= "2015-01-01") \
+		.order_by(desc(Price.end_date)).all()
 	result = [row2dict(report) for report in list]
-	return jsonify(json_list = list), 200
+	response = jsonify(result)
+	response.status_code = 200 
+	return response
 
 def get_session():
 	engine = create_engine("postgresql://postgres:PostGres2020!@localhost/finance")
