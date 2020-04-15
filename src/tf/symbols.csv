@@ -1,0 +1,31 @@
+Company,Exchange,Symbol,Industry,Date Added,Notes,"Index Weighting (Mar 25, 2020) "
+3M,NYSE,NYSE: MMM,Conglomerate,1976-08-09,g,4.34% 
+American Express,NYSE,NYSE: AXP,Financial services,1982-08-30,,2.75% 
+Apple Inc.,NASDAQ,AAPL,Information technology,2015-03-19,,8.08% 
+Boeing,NYSE,NYSE: BA,Aerospace and defense,1987-03-12,,4.18% 
+Caterpillar Inc.,NYSE,NYSE: CAT,Construction and Mining,1991-05-06,,3.31% 
+Chevron Corporation,NYSE,NYSE: CVX,Petroleum industry,2008-02-19,1,2.18% 
+Cisco Systems,NASDAQ,CSCO,Information technology,2009-06-08,,1.26% 
+The Coca-Cola Company,NYSE,NYSE: KO,Food industry,1987-03-12,,1.29% 
+Dow Inc.,NYSE,NYSE: DOW,Chemical industry,2019-04-02,,0.93% 
+ExxonMobil,NYSE,NYSE: XOM,Petroleum industry,1928-10-01,,1.16% 
+Goldman Sachs,NYSE,NYSE: GS,Financial services,2013-09-20,,5.02% 
+The Home Depot,NYSE,NYSE: HD,Retailing,1999-11-01,,6.04% 
+IBM,NYSE,NYSE: IBM,Information technology,1979-06-29,,3.45% 
+Intel,NASDAQ,INTC,Information technology,1999-11-01,,1.71% 
+Johnson & Johnson,NYSE,NYSE: JNJ,Pharmaceutical industry,1997-03-17,,3.90% 
+JPMorgan Chase,NYSE,NYSE: JPM,Financial services,1991-05-06,,2.89% 
+McDonald's,NYSE,NYSE: MCD,Food industry,1985-10-30,,5.30% 
+Merck & Co.,NYSE,NYSE: MRK,Pharmaceutical industry,1979-06-29,,2.26% 
+Microsoft,NASDAQ,MSFT,Information technology,1999-11-01,,4.85% 
+Nike,NYSE,NYSE: NKE,Apparel,2013-09-20,,2.36% 
+Pfizer,NYSE,NYSE: PFE,Pharmaceutical industry,2004-04-08,,0.97% 
+Procter & Gamble,NYSE,NYSE: PG,Fast moving consumer goods,1932-05-26,,3.38% 
+Raytheon Technologies,NYSE,NYSE: RTX,Aerospace and defense,1939-03-14,,2.84% 
+The Travelers Companies,NYSE,NYSE: TRV,Financial services,2009-06-08,,3.07% 
+UnitedHealth Group,NYSE,NYSE: UNH,Managed health care,2012-09-24,,7.19% 
+Verizon,NYSE,NYSE: VZ,Telecommunication,2004-04-08,,1.64% 
+Visa Inc.,NYSE,NYSE: V,Financial services,2013-09-20,,5.05% 
+Walmart,NYSE,NYSE: WMT,Retailing,1997-03-17,,3.76% 
+Walgreens Boots Alliance,NASDAQ,WBA,Retailing,2018-06-26,,1.48% 
+The Walt Disney Company,NYSE,NYSE: DIS,Broadcasting and entertainment,1991-05-06,,3.21%
