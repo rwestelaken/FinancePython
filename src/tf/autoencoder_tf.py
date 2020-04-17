@@ -6,12 +6,13 @@ from sklearn.utils import shuffle
 from sklearn.preprocessing import MinMaxScaler
 
 # Load Data
-data = pd.read_csv('dj30_10y.csv', sep=',', engine='python')
+folder = "~/Source/FinancePython/src/tf/"
+data = pd.read_csv(folder + "dj30_10y.csv", sep=',')
 assets = data.columns.values[1:].tolist()
 data = data.iloc[:, 1:]
 
 # Load index
-index = pd.read_csv('dj30_index_10y.csv', sep=',', engine='python')
+index = pd.read_csv(folder + "dj30_index_10y.csv", sep=',', engine='python')
 index = index.iloc[-data.values.shape[0]:, 1:]
 
 # Normalize data

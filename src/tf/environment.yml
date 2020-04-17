@@ -14,5 +14,7 @@ dependencies:
 - requests
 - scikit-learn
 - seaborn
+- statsmodels
 - tensorflow
+- tqdm
 
