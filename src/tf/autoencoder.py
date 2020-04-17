@@ -84,7 +84,7 @@ ma = np.mean(data_X, axis=1)
 count = 29
 
 for stk in tqdm(range(count), desc='Series', leave=True):
-    plt.figure()
+    fig=plt.figure()
     plt.plot(X_train[: ,stk], label='X')
     plt.plot(y_pred_PCA[: ,stk], label='PCA reconstruction')
     plt.plot(y_pred_AE_keras[: ,stk], label='AE reconstruction')
@@ -93,6 +93,7 @@ for stk in tqdm(range(count), desc='Series', leave=True):
     plt.title(assets[stk])
     plt.legend()
     plt.savefig(folder+"series/"+assets[stk]+'.png', bbox_inches='tight')
+    plt.close(fig)
 
 ## Correlations
 
@@ -119,3 +120,4 @@ for stk in tqdm(range(29), desc='Correlations', leave=True):
     g.map_diag(sns.distplot, kde_kws={'color': 'black'})
     g.map_upper(corr)# dot(g.data, kde_kws={'color': 'black'})
     plt.savefig(folder+"correlation/" + assets[stk] + '.png', bbox_inches='tight')
+    plt.close("all")
