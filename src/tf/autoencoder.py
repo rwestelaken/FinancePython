@@ -48,7 +48,7 @@ X_train = data_X
 X_test = data_X
 
 # Training parameters
-epochs = 2
+epochs = 20
 # Fit the model
 history = autoencoder.fit( \
     X_train,\
@@ -67,7 +67,7 @@ pca = PCA()
 pca.fit(X_train)
 print(pca.explained_variance_ratio_)
 cum_exp_var = np.cumsum(pca.explained_variance_ratio_)
-plt.plot(np.arange(1, 30), cum_exp_var)
+plt.plot(np.arange(1, 31), cum_exp_var)
 plt.xlabel('Principal components')
 plt.ylabel('Cumulative explained variance')
 plt.show()
@@ -81,7 +81,7 @@ y_pred_PCA = pca.inverse_transform(y_latent_PCA)
 ma = np.mean(data_X, axis=1)
 
 # Plot series
-count = 29
+count = 30
 
 for stk in tqdm(range(count), desc='Series', leave=True):
     fig=plt.figure()

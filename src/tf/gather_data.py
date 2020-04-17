@@ -2,9 +2,10 @@ import datetime as dt
 import pandas as pd
 from pandas_datareader import data as pdr
 
+folder = "/home/westy/Source/FinancePython/src/tf/"
 # Dow Jones 30
 #symbols_table = pd.read_html("https://en.wikipedia.org/wiki/Dow_Jones_Industrial_Average#constituents",header=0)[2]
-symbols_table = pd.read_csv("symbols.csv")
+symbols_table = pd.read_csv(folder + "symbols.csv")
 symbols = list(symbols_table.loc[:, "Symbol"])
 index_symbol = ['^DJI']
 # Dates
@@ -16,7 +17,7 @@ data = pd.DataFrame()
 # Clean all symbol labels and remove unavailable ones
 for i in range(len(symbols)):
     symbols[i]=symbols[i].replace(u'\xa0',u'').replace("NYSE:","")
-symbols.remove('DOW') # DOW data are unvailable on yahoo
+#symbols.remove('DOW') # DOW data are unvailable on yahoo
 
 for i in range(len(symbols)):
     print('Downloading.... ', i, symbols[i])
@@ -31,8 +32,8 @@ data = data.dropna()
 data_index = data_index.dropna()
 
 # Save the data
-data.to_csv('dj30_10y.csv', sep=',', encoding='utf-8')
-data_index.to_csv('dj30_index_10y.csv', sep=',', encoding='utf-8')
+data.to_csv(folder + 'dj30_10y.csv', sep=',', encoding='utf-8')
+data_index.to_csv(folder + 'dj30_index_10y.csv', sep=',', encoding='utf-8')
 print(data.head())
 
 
