@@ -1,3 +1,16 @@
 {
-    "python.pythonPath": "/home/westy/anaconda3/envs/pyfinance/bin/python"
+    "python.pythonPath": "/home/westy/anaconda3/envs/pyfinance/bin/python",
+    
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "finance",
+            "database": "finance",
+            "username": "postgres",
+            "password": "PostGres2020!"
+        }
+    ]
 }
