@@ -1,0 +1,18 @@
+# Use postgres/example user/password credentials
+version: '3.7'
+
+services:
+
+  db:
+    container_name: postgres
+    image: postgres:15.1-alpine
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      #VOLUME: /srv/docker/postgres/data:/var/lib/postgresql/data
+	VOLUME: c:\Data\postgres\data:/var/lib/postgresql/data
+      POSTGRES_PASSWORD: PostGres2020!
+
+
+

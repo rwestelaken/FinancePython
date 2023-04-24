@@ -13,7 +13,7 @@ def test():
 		os.makedirs(yahoopath)
 	
 	loader.deleteCompanies()
-	loader.loadCompany( "../data/company.csv" )
+	loader.loadCompany( "../../data/company.csv" )
 
 	tsx = loader.getCompanies( "TSX" )
 	print(tsx)

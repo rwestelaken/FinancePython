@@ -1,11 +1,13 @@
 import time
 from read import SecReader
+from load import SecLoader
 import os
 
 def test():
 	t1 = time.time()
-	rootpath = "/home/westy/Data/finance"
+	rootpath = "C/Data/finance"
 	reader = SecReader()
+	loader = SecLoader()
 	year = '2020'
 	month = '02'
 	datapath = rootpath + f"/data/{year}/{month}/"
@@ -14,9 +16,16 @@ def test():
 	if not os.path.exists(quandlpath):
 		os.makedirs(quandlpath)
 	
-	for filename in os.listdir( datapath ):
-		print( filename )
-		key = filename.split(".")[0]
+	loader.loadCompany( "../../data/company.csv" )
+
+	tsx = loader.getCompanies( "TSX" )
+	print(tsx)
+	nyse = loader.getCompanies( "NYSE" )
+	print(nyse)
+
+	for item in tsx:
+		key = item.ticker
+		print( key )
 		reader.downloadQuandlFinance(key, quandlpath)
 	
 	t2 = time.time()

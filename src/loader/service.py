@@ -30,8 +30,18 @@ def get_companies():
 	:return: ...
 	"""
 	session = get_session()
-	list = session.query(Company).order_by(Company.ticker).all()
-	result = [row2dict(report) for report in list]
+	companies = session.query(Company).order_by(Company.ticker).all()
+	print(len(companies))
+	unq_tickers = []
+	unq_companies = []
+	for x in companies:
+		# check if exists in unq_list
+		if x.ticker not in unq_tickers:
+			unq_tickers.append(x.ticker)
+			unq_companies.append(x)
+			# print list
+	print(len(unq_companies))
+	result = [row2dict(report) for report in unq_companies]
 	response = jsonify(result)
 	response.status_code = 200 
 	return response
@@ -65,7 +75,8 @@ def get_prices_by_ticker(ticker=None):
 	list = session.query(Price) \
 		.filter(Price.ticker == ticker) \
 		.filter(Price.end_date >= "2015-01-01") \
-		.order_by(desc(Price.end_date)).all()
+		.order_by(Price.end_date).all()
+		#.order_by(desc(Price.end_date)).all()
 	result = [row2dict(report) for report in list]
 	response = jsonify(result)
 	response.status_code = 200 

@@ -1,0 +1,23 @@
+name: pyfinance
+channels:
+- defaults
+- conda-forge
+dependencies:
+- python==3.9.*
+- pip
+- jupyter
+- plotly 
+- flask
+- numpy
+- pandas
+- psycopg2
+- requests
+- sqlalchemy
+- quandl
+- python-duckdb
+- pip:
+  - fredapi
+  - pandasdmx
+  - wbdata
+  - weo
+  - yfinance

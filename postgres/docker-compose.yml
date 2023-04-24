@@ -1,0 +1,16 @@
+# Use postgres/example user/password credentials
+version: '3.7'
+services:
+  db:
+    container_name: postgres
+    image: postgres:15.1-alpine
+    restart: always
+    volumes:
+      - ./database:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: PostGres2020!
+
+
+

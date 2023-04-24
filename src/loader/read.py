@@ -12,6 +12,8 @@ import zipfile
 import requests
 import io
 import os
+import yfinance as yf
+
 
 class SecReader():
 
@@ -24,7 +26,6 @@ class SecReader():
 	# dataframe columns help from https://stackoverflow.com/questions/44513738/pandas-create-empty-dataframe-with-only-column-names
 	# listdir help from https://stackoverflow.com/questions/3207219/how-do-i-list-all-files-of-a-directory
 	# pandas csv append help from https://stackoverflow.com/questions/17530542/how-to-add-pandas-data-to-an-existing-csv-file
-	
 
 	def downloadRSS( self, rsspath, year, month):				
 		# https://www.sec.gov/Archives/edgar/monthly/xbrlrss-2005-04.xml
@@ -118,6 +119,7 @@ class SecReader():
 
 	# xbrl context help from https://stackoverflow.com/questions/14513938/xbrl-us-gaap-contextref-standard
 
+	# check if string is numeric
 	def isNumeric( self, s ):
 		try:
 			float(s)
@@ -125,6 +127,7 @@ class SecReader():
 		except ValueError:
 			return False
 
+	# read XBRL file
 	def readXBRL( self, filename, ticker, datapath):
 		ns_xbrli = "{http://www.xbrl.org/2003/instance}"
 		ns_xbrldi = "{http://xbrl.org/2006/xbrldi}"
@@ -225,7 +228,7 @@ class SecReader():
 		# postgres help from https://stackoverflow.com/questions/45608131/insert-from-csv-file-to-postgresql-table-with-integer-values-type
 
 	# yahoo finance help from https://stackoverflow.com/questions/44030983/yahoo-finance-url-not-working
-
+	#
 	def downloadYahooFinance( self, ticker, yahoopath ):
 		url = "https://query1.finance.yahoo.com/v7/finance/download/" + ticker + "?period1=0&period2=9999999999&interval=1d&events=history&crumb=IhP5WUwkm7I"
 		#url = "https://query1.finance.yahoo.com/v8/finance/chart/AA?symbol=AA&period1=0&period2=9999999999&interval=1mo&events=div%2Csplit"
@@ -240,17 +243,31 @@ class SecReader():
 			output.write( response.content )
 			output.close()
 
+	def downloadYFinance( self, ticker, yahoopath ):
+		df = yf.download(ticker, '2020-01-01', '2023-01-01')
+		filename = ticker + ".csv"
+		pathandfilename = yahoopath + filename
+		if (df.shape[0] > 0):
+			print( filename )
+			df.to_csv(pathandfilename)
+
 	# quandl help from https://www.quora.com/Using-Python-whats-the-best-way-to-get-stock-data
 
 	def downloadQuandlFinance( self, ticker, quandlpath ):
 		import quandl
-		apikey = "7CXBrupYp7tL53dHGUar"
+		quandl.ApiConfig.api_key = '7CXBrupYp7tL53dHGUar'
 		try:
-			df = quandl.get("WIKI/" + ticker, start_date="2016-01-01", end_date="2018-01-01", api_key=apikey)
+			#df = quandl.get("WIKI/PRICES", ticker=ticker, start_date="2020-01-01", end_date="2023-01-01")
+			#date = { 'gte': '2015-12-31', 'lte': '2016-12-31' },
+			df = quandl.get_table('WIKI/PRICES',
+                        #qopts = { 'columns': ['ticker', 'date', 'close'] },
+                        ticker = [ticker],
+                        date = { 'gte': '2020-01-01', 'lte': '2023-01-01' })
+
 			csvname = quandlpath + ticker + '.csv'
 			df.to_csv( csvname, sep=',', encoding='utf-8' )
 			print( csvname )
-		except:
-			print( ticker + " is an invalid code" )
+		except Exception as e:
+  			print( ticker + f"{e.msg}" )
 
 

@@ -107,10 +107,15 @@ class SecLoader():
 		t2 = time.time()
 		print( "Loading time taken: " + str( t2-t1 ) + " seconds" )
 
+	def deletePrices( self ):
+		count = self.session.query(Price).delete()
+		self.session.commit()
+		print( f"{count} prices deleted" )
+
 	def loadPrice( self, filename ):
 		#Date,Open,High,Low,Close,Adj Close,Volume
 		t1 = time.time()
-		ticker = filename[filename.rfind("/")+1:]
+		ticker = filename[filename.rfind("\\")+1:]
 		ticker = ticker[:ticker.rfind(".")]
 		print( ticker )
 		with open( filename ) as f:

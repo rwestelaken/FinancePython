@@ -12,8 +12,8 @@ def test():
 	if not os.path.exists(yahoopath):
 		os.makedirs(yahoopath)
 	
-	loader.deleteCompanies()
-	loader.loadCompany( "../../data/company.csv" )
+	#loader.deleteCompanies()
+	#loader.loadCompany( "../../data/company.csv" )
 
 	tsx = loader.getCompanies( "TSX" )
 	print(tsx)
@@ -23,18 +23,16 @@ def test():
 	for item in tsx:
 		key = item.ticker
 		print( key )
-		reader.downloadYahooFinance(key, yahoopath)
+		reader.downloadYFinance(key, yahoopath)
 	
-	for filename in os.listdir( yahoopath ):
-		print( filename )
-		loader.loadPrice( yahoopath + filename )
+	#loader.deletePrices()
 
+	#for filename in os.listdir( yahoopath ):
+	#	print( filename )
+	#	loader.loadPrice( yahoopath + filename )
 
-	#intc = loader.getPrices( 'yahoo', 'INTC' )
-	#print(intc)
-
-	fts = loader.getPrices( 'yahoo', 'FTS.TO' )
-	print(fts)
+	df = loader.getPrices( 'yahoo', 'WPM.TO' )
+	print(df)
 
 	t2 = time.time()
 	print( "Total time taken: " + str( t2-t1 ) + " seconds" )

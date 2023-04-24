@@ -1,0 +1,10 @@
+
+# FROM openjdk11:alpine-jre
+FROM amd64/openjdk:11
+WORKDIR /app
+VOLUME ["/app"]
+COPY ./app.jar app.jar
+COPY ./start.sh start.sh
+COPY ./wait-for-it.sh wait-for-it.sh
+RUN sh -c 'touch app.jar'
+ENTRYPOINT ["./start.sh"]
